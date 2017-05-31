@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:elevation="6dp"
+        android:background="@color/pink_red_toobar">
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我的位置"
+            android:layout_gravity="center"
+            android:theme="@style/title_font" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:theme="@style/style_about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="地点:"/>
+        <TextView
+            android:id="@+id/location_address"
+            android:theme="@style/style_about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:theme="@style/style_about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="定位时间:"/>
+        <TextView
+            android:id="@+id/location_time"
+            android:theme="@style/style_about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <com.amap.api.maps2d.MapView
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>
