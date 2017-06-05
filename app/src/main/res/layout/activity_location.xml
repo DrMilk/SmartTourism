@@ -1,54 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/map_view_test"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true" />
+
+    <LinearLayout
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="120dp"
+        android:layout_marginLeft="10dp"
+        android:background="#FFF"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="100dp"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/road_condition"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@color/bdmap"
+            android:scaleType="centerInside"
+            android:src="@mipmap/road_condition" />
+
+        <ImageView
+            android:id="@+id/map_type"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="#FFF"
+            android:scaleType="centerInside"
+            android:src="@mipmap/maptype" />
+
+        <ImageView
+            android:id="@+id/map_mylocation"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="#FFF"
+            android:scaleType="centerInside"
+            android:src="@mipmap/map_mylocation"/>
+
+        <!--<ImageView-->
+            <!--android:id="@+id/map_gotogether"-->
+            <!--android:layout_width="40dp"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:background="#FFF"-->
+            <!--android:scaleType="centerInside"-->
+            <!--android:src="@mipmap/map_gotogether" />-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/map_location"-->
+            <!--android:layout_width="40dp"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:background="#FFF"-->
+            <!--android:scaleType="centerInside"-->
+            <!--android:src="@mipmap/shafa" />-->
+
+        <ImageView
+            android:id="@+id/map_marker"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="#FFF"
+            android:scaleType="centerInside"
+            android:src="@mipmap/map_type" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/mylocation_text"
+        android:layout_width="320dp"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:background="#FFF"
+        android:drawableLeft="@mipmap/icon_openmap_focuse_mark"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:text="我的位置:北京中关村208号" />
+
+
     <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:elevation="6dp"
-        android:background="@color/pink_red_toobar">
-        <TextView
-            android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="我的位置"
-            android:layout_gravity="center"
-            android:theme="@style/title_font" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp" >
+
+        <EditText
+            android:id="@+id/search_panorama"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/glass"
+            android:drawableLeft="@mipmap/next_"
+            android:drawablePadding="10dp"
+            android:hint="搜地点、查公交、找路线"
+            android:textSize="16sp"
+            android:textColor="#bbcccccc"
+            android:textColorHint="#aacccccc"
+            android:padding="10dp" />
+        <View
+            android:id="@+id/search"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentRight="true"
+            android:background="@mipmap/next_" />
     </RelativeLayout>
+
     <LinearLayout
-        android:layout_marginTop="40dp"
-        android:orientation="horizontal"
+        android:id="@+id/mark_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:theme="@style/style_about"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="地点:"/>
-        <TextView
-            android:id="@+id/location_address"
-            android:theme="@style/style_about"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#cc4e5a6b"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <ImageView
+            android:id="@+id/mark_image"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/img_border"
+            android:scaleType="fitXY"
+            android:src="@mipmap/lock_25" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@mipmap/lock_25" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="英伦贵族小旅馆"
+                    android:textColor="#FFF"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="距离209米"
+                    android:textColor="#FFF" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/zan_nums"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:drawableLeft="@mipmap/icon_openmap_focuse_mark"
+                android:text="1289"
+                android:textColor="#FFF"
+                android:textSize="16sp" />
+        </RelativeLayout>
     </LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="40dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:theme="@style/style_about"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="定位时间:"/>
-        <TextView
-            android:id="@+id/location_time"
-            android:theme="@style/style_about"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-    <com.amap.api.maps2d.MapView
-        android:id="@+id/map"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-</LinearLayout>
+</RelativeLayout>

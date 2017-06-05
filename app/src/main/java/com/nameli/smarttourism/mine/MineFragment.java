@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.nameli.smarttourism.R;
+import com.nameli.smarttourism.lbstest.*;
 
 
 /**
@@ -53,7 +54,7 @@ public class MineFragment extends Fragment implements View.OnClickListener{
             case R.id.mine_personal:Intent it2=new Intent(getActivity(),PersonaldActivity.class);startActivity(it2);break;
             case R.id.mine_setting:Intent it3=new Intent(getActivity(),SettingActivity.class);startActivity(it3);break;
             case R.id.mine_weather:Intent it4=new Intent(getActivity(),WeatherActivity.class);startActivity(it4);break;
-            case R.id.mine_location:Intent it5=new Intent(getActivity(),DingweiMap.class);startActivity(it5);break;
+            case R.id.mine_location:Intent it5=new Intent(getActivity(), com.nameli.smarttourism.lbstest.LocationActivity.class);startActivity(it5);break;
             case R.id.mine_about:Intent it6=new Intent(getActivity(),AboutActivity.class);startActivity(it6);break;
         }
     }

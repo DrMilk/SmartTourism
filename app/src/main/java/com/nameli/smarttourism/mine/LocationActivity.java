@@ -87,7 +87,7 @@ public class LocationActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_location);
+        setContentView(R.layout.activity_location1);
         initdata();
         initview();
         mMapView.onCreate(savedInstanceState);
