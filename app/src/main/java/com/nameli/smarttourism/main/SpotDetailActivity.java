@@ -77,21 +77,30 @@ public class SpotDetailActivity extends Activity implements View.OnClickListener
             @Override
             public void onClick(View v) {
                 if(checkuser()){
+                    boolean status=true;
                     LiUser xuUser=new LiUser();
                     if(list_collect==null)
                     list_collect=new ArrayList<String>();
-                    list_collect.add(id);
-                    xuUser.setList_collect(list_collect);
-                    xuUser.update(name, new UpdateListener() {
-                        @Override
-                        public void done(BmobException e) {
-                            if(e==null){
-                                T.showShot(mcontext,"收藏成功！");
-                            }else {
-                                T.showShot(mcontext,e.toString());
-                            }
+                    for(int i=0;i<list_collect.size();i++){
+                        if(list_collect.get(i).equals(id)){
+                            status=false;
                         }
-                    });
+                    }
+                    if(status){
+                        list_collect.add(id);
+                        xuUser.setList_collect(list_collect);
+                        xuUser.update(name, new UpdateListener() {
+                            @Override
+                            public void done(BmobException e) {
+                                if(e==null){
+                                    T.showShot(mcontext,"收藏成功！");
+                                }else {
+                                    T.showShot(mcontext,e.toString());
+                                }
+                            }
+                        });
+                    }else
+                        T.showShot(mcontext,"已经收藏过了~");
                 }
             }
         });

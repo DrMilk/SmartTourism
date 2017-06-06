@@ -140,6 +140,7 @@ public class MyUpload {
         final String cache_str=objectKey.split("/")[1];
         Bitmap bitmap=wuSdcard.getPicture(MySdcard.pathCacheImage,cache_str);
         if(bitmap!=null){
+            Log.i(TAG,"本地加载成功");
             img.setImageBitmap(bitmap);
             return null;
         }

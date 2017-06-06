@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 
 
 import com.nameli.smarttourism.R;
+import com.nameli.smarttourism.Utils.L;
 import com.nameli.smarttourism.Utils.MyUpload;
 import com.nameli.smarttourism.Utils.T;
 import com.nameli.smarttourism.customView.PopupWindowShare;
@@ -26,7 +28,12 @@ import com.nameli.smarttourism.onlinedata.Fooddata;
 import com.nameli.smarttourism.onlinedata.LiUser;
 import com.nameli.smarttourism.onlinedata.Remakdata;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
@@ -96,6 +103,7 @@ public class FoodDetailActivity extends Activity implements View.OnClickListener
 
     private void updataremark() {
         if(list_remark.size()==list_remark.size()){
+            updataContext();
             foodremarkadapter.notifyDataSetChanged();
         }
     }
@@ -152,9 +160,9 @@ public class FoodDetailActivity extends Activity implements View.OnClickListener
         title.setText(title_text);
         context.setText(context_text);
         price.setText(price_text);
-        listview_remark.setAdapter(foodremarkadapter);
         listview_remark.addHeaderView(headview);
         listview_remark.addFooterView(footview);
+        listview_remark.setAdapter(foodremarkadapter);
     }
     private boolean checkuser() {
         LiUser bmobUser = BmobUser.getCurrentUser(LiUser.class);
@@ -179,6 +187,34 @@ public class FoodDetailActivity extends Activity implements View.OnClickListener
             case R.id.detail_spot_back:FoodDetailActivity.this.finish();break;
             case R.id.detail_spot_share: openpopupwindow();break;
         }
+    }
+    private boolean updataContext() {
+        final SimpleDateFormat sdf=new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+        final Date[] data1 = {null};
+        final Date[] data2 = {null};
+//        for (int i=0;i<list_remark.size();i++){
+//            Log.i(TAG,list_remark.get(i).getCreatedAt()+"日期");
+//        }
+        Comparator<Remakdata> comparator = new Comparator<Remakdata>(){
+            public int compare(Remakdata s1, Remakdata s2) {
+                //排序日期
+                try {
+                    data1[0] =sdf.parse(s1.getCreatedAt());
+                    data2[0] =sdf.parse(s2.getCreatedAt());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                if(data1[0].getTime()> data2[0].getTime()){
+                    return -1;
+                }else {
+                    return 1;
+                }
+            }
+        };
+        if(list_remark.size()>1){
+            Collections.sort(list_remark,comparator);
+        }
+        return true;
     }
     private void openpopupwindow() {
         WindowManager windowmanager=this.getWindowManager();

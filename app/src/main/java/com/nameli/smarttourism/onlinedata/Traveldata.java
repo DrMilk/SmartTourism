@@ -1,5 +1,8 @@
 package com.nameli.smarttourism.onlinedata;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
 import cn.bmob.v3.BmobObject;
@@ -8,7 +11,7 @@ import cn.bmob.v3.BmobObject;
  * Created by Administrator on 2017/3/17.
  */
 
-public class Traveldata extends BmobObject{
+public class Traveldata extends BmobObject implements Parcelable{
     private String title;
     private String context;
     private boolean pic_status;
@@ -20,6 +23,25 @@ public class Traveldata extends BmobObject{
         this.pic_status = pic_status;
         this.list_remark = list_remark;
     }
+
+    protected Traveldata(Parcel in) {
+        title = in.readString();
+        context = in.readString();
+        pic_status = in.readByte() != 0;
+        list_remark = in.createStringArrayList();
+    }
+
+    public static final Creator<Traveldata> CREATOR = new Creator<Traveldata>() {
+        @Override
+        public Traveldata createFromParcel(Parcel in) {
+            return new Traveldata(in);
+        }
+
+        @Override
+        public Traveldata[] newArray(int size) {
+            return new Traveldata[size];
+        }
+    };
 
     public String getTitle() {
         return title;
@@ -51,5 +73,18 @@ public class Traveldata extends BmobObject{
 
     public void setList_remark(ArrayList<String> list_remark) {
         this.list_remark = list_remark;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(title);
+        dest.writeString(context);
+        dest.writeByte((byte) (pic_status ? 1 : 0));
+        dest.writeStringList(list_remark);
     }
 }

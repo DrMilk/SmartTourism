@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +19,19 @@ import android.widget.TextView;
 
 import com.nameli.smarttourism.R;
 import com.nameli.smarttourism.Utils.L;
+import com.nameli.smarttourism.Utils.T;
+import com.nameli.smarttourism.food.FoodSearchActivity;
 import com.nameli.smarttourism.main.MainActivity;
+import com.nameli.smarttourism.onlinedata.Fooddata;
+import com.nameli.smarttourism.onlinedata.Spotdata;
 import com.nameli.smarttourism.onlinedata.Traveldata;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
@@ -80,6 +90,7 @@ public class TravelFragment extends Fragment {
 
     private void updataview() {
             if(list_travel.size()==list_str.size()){
+                updataContext();
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -89,7 +100,36 @@ public class TravelFragment extends Fragment {
                 });
             }
     }
-
+    private boolean updataContext() {
+        L.i(TAG,"排序");
+        final SimpleDateFormat sdf=new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+        final Date[] data1 = {null};
+        final Date[] data2 = {null};
+        for (int i=0;i<list_travel.size();i++){
+            Log.i(TAG,list_travel.get(i).getCreatedAt()+"日期");
+        }
+        Comparator<Traveldata> comparator = new Comparator<Traveldata>(){
+            public int compare(Traveldata s1, Traveldata s2) {
+                //排序日期
+                try {
+                    data1[0] =sdf.parse(s1.getCreatedAt());
+                    data2[0] =sdf.parse(s2.getCreatedAt());
+                } catch (ParseException e) {
+                    Log.i(TAG,"wenti");
+                    e.printStackTrace();
+                }
+                if(data1[0].getTime()> data2[0].getTime()){
+                    return -1;
+                }else {
+                    return 1;
+                }
+            }
+        };
+        if(list_travel.size()>1){
+            Collections.sort(list_travel,comparator);
+        }
+        return true;
+    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -129,23 +169,27 @@ public class TravelFragment extends Fragment {
             public boolean onQueryTextSubmit(String query) {
                 if(query.length()!=0){
                     L.i(TAG,"我要搜索"+query);
-                    BmobQuery<Traveldata> query1 = new BmobQuery<Traveldata>();
-                    query1.addWhereEqualTo("title",query);
-                    query1.setLimit(10);
-                    query1.findObjects(new FindListener<Traveldata>() {
-                        @Override
-                        public void done(List<Traveldata> list, BmobException e) {
-                            L.i(TAG,"搜索成功了");
-                            Intent it=new Intent(getActivity(),TravelDetailActivity.class);
-                            Bundle bundle=new Bundle();
-                            bundle.putString("title",list.get(0).getTitle());
-                            bundle.putString("context",list.get(0).getContext());
-                            bundle.putStringArrayList("remarklist",list.get(0).getList_remark());
-                            bundle.putString("id",list.get(0).getObjectId());
-                            it.putExtras(bundle);
-                            startActivity(it);
+                    ArrayList<Traveldata> listpassdata=new ArrayList<Traveldata>();
+                    for(int i=0;i<list_travel.size();i++){
+                        if(list_travel.get(i).getTitle().contains(query)){
+                            listpassdata.add(list_travel.get(i));
+                            L.i(TAG,"listpassdata找到一个");
                         }
-                    });
+                    }
+                    if(listpassdata.size()!=0){
+                        Intent it=new Intent(getActivity(),TravelSearchActivity.class);
+                        Bundle bundle=new Bundle();
+                        bundle.putParcelableArrayList("searchdata",listpassdata);
+//                        bundle.putString("title",list.get(0).getTitle());
+//                        bundle.putString("context",list.get(0).getContext());
+//                        bundle.putString("price",list.get(0).getPrice()+"");
+//                        bundle.putString("id",list.get(0).getObjectId());
+//                        bundle.putStringArrayList("remarklist",list.get(0).getList_remarkd());
+                        it.putExtras(bundle);
+                        getActivity().startActivity(it);
+                    }else {
+                        T.showShot(mcontext,"没有搜索到");
+                    }
                 }
                 L.i(TAG,"搜索");
                 //   updataviewlimit(query);

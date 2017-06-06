@@ -163,7 +163,6 @@
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="英伦贵族小旅馆"
                     android:textColor="#FFF"
                     android:textSize="16sp" />
 
@@ -172,21 +171,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="距离209米"
                     android:textColor="#FFF" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/zan_nums"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                android:drawableLeft="@mipmap/icon_openmap_focuse_mark"
-                android:text="1289"
-                android:textColor="#FFF"
-                android:textSize="16sp" />
+            <!--<TextView-->
+                <!--android:id="@+id/zan_nums"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:drawableLeft="@mipmap/icon_openmap_focuse_mark"-->
+                <!--android:text="1289"-->
+                <!--android:textColor="#FFF"-->
+                <!--android:textSize="16sp" />-->
         </RelativeLayout>
     </LinearLayout>
 </RelativeLayout>

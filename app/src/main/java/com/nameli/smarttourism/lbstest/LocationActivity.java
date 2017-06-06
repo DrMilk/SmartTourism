@@ -552,10 +552,16 @@ public class LocationActivity extends Activity implements OnClickListener,OnMapC
      */
     private void initMarksData() {
         markInfoList = new ArrayList<MarkInfo>();
-        markInfoList.add(new MarkInfo(32.079254, 118.787623, R.mipmap.a01, "英伦贵族小旅馆", "距离209米", 1888));
-        markInfoList.add(new MarkInfo(32.064355, 118.787624, R.mipmap.a02, "沙井国际高级会所", "距离459米", 388));
-        markInfoList.add(new MarkInfo(28.7487420000, 115.8748860000, R.mipmap.a03, "华东交通大学南区", "距离5米", 888));
-        markInfoList.add(new MarkInfo(28.7534890000, 115.8767960000, R.mipmap.a04, "华东交通大学北区", "距离10米", 188));
+        markInfoList.add(new MarkInfo(45.799504, 126.601722, R.mipmap.timg, "太阳岛风景区", "地址：黑龙江省哈尔滨松北区警备路3号", 0));
+        markInfoList.add(new MarkInfo(45.791994, 126.607131, R.mipmap.timg1, "太阳岛雪博会", "途径公交车：松花江索道", 0));
+        markInfoList.add(new MarkInfo(45.793033, 126.607948, R.mipmap.timg2, "俄罗斯风情小镇",
+                "地址：哈尔滨市松北区平原路太阳岛风景街10号(近临江街)", 0));
+        markInfoList.add(new MarkInfo(45.791844, 126.593542, R.mipmap.timg3, "太阳岛极地馆",
+                "途径公交车：旅游巴士2路夏季; 旅游巴士4路夏季", 0));
+        markInfoList.add(new MarkInfo(45.794061, 126.61146, R.mipmap.timg4, "太阳岛贵宾楼酒店",
+                "地址：松北区临江街19号", 0));
+        markInfoList.add(new MarkInfo(45.798563, 126.605661, R.mipmap.timg5, "戏水乐园",
+                "地址：太阳岛风景区内", 0));
         myBaiduMap.setOnMarkerClickListener(this);
         myBaiduMap.setOnMapClickListener(this);
     }
@@ -636,11 +642,11 @@ public class LocationActivity extends Activity implements OnClickListener,OnMapC
         ImageView iv = (ImageView) markLayout.findViewById(R.id.mark_image);
         TextView distanceTv = (TextView) markLayout.findViewById(R.id.distance);
         TextView nameTv = (TextView) markLayout.findViewById(R.id.name);
-        TextView zanNumsTv = (TextView) markLayout.findViewById(R.id.zan_nums);
+//        TextView zanNumsTv = (TextView) markLayout.findViewById(R.id.zan_nums);
         iv.setImageResource(MyMarker.getImageId());
         distanceTv.setText(MyMarker.getDistance() + "");
         nameTv.setText(MyMarker.getName());
-        zanNumsTv.setText(MyMarker.getZanNum() + "");
+//        zanNumsTv.setText(MyMarker.getZanNum() + "");
         //初始化一个InfoWindow
         initInfoWindow(MyMarker, marker);
         markLayout.setVisibility(View.VISIBLE);
