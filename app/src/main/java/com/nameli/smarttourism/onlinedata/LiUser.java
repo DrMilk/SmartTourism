@@ -37,7 +37,9 @@ public class LiUser extends BmobUser{
     }
 
     public String getName() {
-        return name;
+        if(name!=null)
+            return name;
+        return "";
     }
 
     public void setName(String name) {
@@ -45,7 +47,9 @@ public class LiUser extends BmobUser{
     }
 
     public String getQq() {
+        if(qq!=null)
         return qq;
+        return "";
     }
 
     public void setQq(String qq) {
@@ -53,7 +57,9 @@ public class LiUser extends BmobUser{
     }
 
     public String getWechat() {
-        return wechat;
+        if(wechat!=null)
+            return wechat;
+        return "";
     }
 
     public void setWechat(String wechat) {
@@ -61,7 +67,9 @@ public class LiUser extends BmobUser{
     }
 
     public String getAddress() {
-        return address;
+        if(address!=null)
+            return address;
+        return "";
     }
 
     public void setAddress(String address) {
@@ -77,7 +85,9 @@ public class LiUser extends BmobUser{
     }
 
     public ArrayList<String> getList_collect() {
-        return list_collect;
+        if(list_collect!=null)
+            return list_collect;
+        return new ArrayList<>();
     }
 
     public void setList_collect(ArrayList<String> list_collect) {

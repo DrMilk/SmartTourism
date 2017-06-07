@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.nameli.smarttourism.R;
 import com.nameli.smarttourism.Utils.L;
@@ -27,6 +28,7 @@ public class SpotSearchActivity extends Activity{
     private SpotListAdatapter adapter;
     private Context mcontext;
     private ArrayList<Spotdata> listdata;
+    private TextView textback;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +42,11 @@ public class SpotSearchActivity extends Activity{
         Intent it=getIntent();
         Bundle bundle=it.getExtras();
         listdata=bundle.getParcelableArrayList("searchdata");
+        ArrayList<String> listdataaddress=bundle.getStringArrayList("searchdataaddress");
+        for(int i=0;i<listdata.size();i++){
+            listdata.get(i).setObjectId(listdataaddress.get(i));
+        }
+        L.i(TAG,listdata.get(0).getObjectId());
         L.i(TAG,listdata.size()+"aaaaaaaaaaaaaaaaaaa");
         adapter=new SpotListAdatapter(mcontext,listdata);
         listView.setAdapter(adapter);
@@ -57,6 +64,13 @@ public class SpotSearchActivity extends Activity{
                 bundle.putString("id",listdata.get(position).getObjectId());
                 it.putExtras(bundle);
                 startActivity(it);
+            }
+        });
+        textback= (TextView) findViewById(R.id.search_back);
+        textback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

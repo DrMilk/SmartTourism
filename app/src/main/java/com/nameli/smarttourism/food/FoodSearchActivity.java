@@ -8,6 +8,7 @@ import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.nameli.smarttourism.R;
 import com.nameli.smarttourism.Utils.L;
@@ -25,6 +26,7 @@ public class FoodSearchActivity extends Activity{
     private FoodListAdatapter adapter;
     private Context mcontext;
     private ArrayList<Fooddata> listdata;
+    private TextView textback;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +40,10 @@ public class FoodSearchActivity extends Activity{
         Intent it=getIntent();
         Bundle bundle=it.getExtras();
         listdata=bundle.getParcelableArrayList("searchdata");
+        ArrayList<String> listdataaddress=bundle.getStringArrayList("searchdataaddress");
+        for(int i=0;i<listdata.size();i++){
+            listdata.get(i).setObjectId(listdataaddress.get(i));
+        }
         L.i(TAG,listdata.size()+"aaaaaaaaaaaaaaaaaaa");
         adapter=new FoodListAdatapter(mcontext,listdata);
         listView.setAdapter(adapter);
@@ -57,6 +63,13 @@ public class FoodSearchActivity extends Activity{
                 bundle.putStringArrayList("remarklist",listdata.get(position).getList_remarkd());
                 it.putExtras(bundle);
                 startActivity(it);
+            }
+        });
+        textback= (TextView) findViewById(R.id.search_back);
+        textback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

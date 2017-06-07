@@ -209,9 +209,15 @@ public class FirstTabFragment extends Fragment {
                         }
                     }
                     if (listpassdata.size() != 0) {
+                        L.i(TAG,listpassdata.get(0).getObjectId());
                         Intent it = new Intent(getActivity(), SpotSearchActivity.class);
                         Bundle bundle = new Bundle();
                         bundle.putParcelableArrayList("searchdata", listpassdata);
+                        ArrayList<String> listpassaddress=new ArrayList<String>();
+                        for(int i=0;i<listpassdata.size();i++){
+                            listpassaddress.add(listpassdata.get(i).getObjectId());
+                        }
+                        bundle.putStringArrayList("searchdataaddress",listpassaddress);
 //                        bundle.putString("title",list.get(0).getTitle());
 //                        bundle.putString("context",list.get(0).getContext());
 //                        bundle.putString("price",list.get(0).getPrice()+"");

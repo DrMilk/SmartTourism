@@ -124,12 +124,6 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:text="修改密码"/>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/gray"/>
-
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1px"

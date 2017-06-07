@@ -86,11 +86,17 @@ public class PersonaldActivity extends Activity implements View.OnClickListener{
             // 允许用户使用应用
             xuuser=  BmobUser.getCurrentUser();
             email=xuuser.getEmail();
-            name= (String) BmobUser.getObjectByKey("name");
-            qq= (String) BmobUser.getObjectByKey("qq");
-            wechat= (String) BmobUser.getObjectByKey("wechat");
-            address=(String) BmobUser.getObjectByKey("address");
-            sex=(String) BmobUser.getObjectByKey("sex");
+            name= bmobUser.getName();
+            qq= bmobUser.getQq();
+            if(qq==null){
+                L.i(TAG,"qq空");
+            }
+            wechat= bmobUser.getWechat();
+            if(wechat==null){
+                L.i(TAG,"wechat空");
+            }
+            address= bmobUser.getAddress();
+            sex=bmobUser.getSex();
             //  text_username.setText(name);
             return true;
         }else{
@@ -117,17 +123,22 @@ public class PersonaldActivity extends Activity implements View.OnClickListener{
         String wechatnew=ed_wechat.getText().toString().trim();
         String emailnew=ed_emial.getText().toString().trim();
         xuprocessdialog.show();
+        L.i(TAG,qqnew);
         LiUser newUser = new LiUser();
-        if(!namenew.equals(name))
-        newUser.setName(name);
+        if(!namenew.equals(name)){
+            newUser.setName(namenew);
+            L.i(TAG,"newUser.setName成功了");
+        }
         if(!addressnew.equals(addressnew))
-        newUser.setAddress(address);
+        newUser.setAddress(addressnew);
         if(!qq.equals(qqnew))
-        newUser.setQq(qq);
+        newUser.setQq(qqnew);
         if(!wechat.equals(wechatnew))
-        newUser.setWechat(wechat);
+        newUser.setWechat(wechatnew);
+        if(email!=null)
         if(!email.equals(emailnew))
-        newUser.setEmail(email);
+        newUser.setEmail(emailnew);
+        L.i(TAG,newUser.getName()+newUser.getAddress()+newUser.getQq()+newUser.getWechat()+newUser.getEmail()+xuuser.getObjectId());
         newUser.update(xuuser.getObjectId(),new UpdateListener() {
             @Override
             public void done(BmobException e) {

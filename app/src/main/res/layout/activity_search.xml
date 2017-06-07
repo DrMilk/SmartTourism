@@ -15,6 +15,26 @@
             android:text="搜索"
             android:layout_gravity="center"
             android:theme="@style/title_font" />
+        <LinearLayout
+            android:id="@+id/detail_spot_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="6dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_alignParentLeft="true">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="30dp"
+                android:src="@mipmap/activity_left_normal_chg"/>
+            <TextView
+                android:id="@+id/search_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="返回"
+                android:layout_gravity="center"
+                android:theme="@style/bottom_titil_font"/>
+        </LinearLayout>
     </RelativeLayout>
     <ListView
         android:layout_marginTop="4dp"
