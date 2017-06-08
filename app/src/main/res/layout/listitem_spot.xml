@@ -39,7 +39,7 @@
                android:id="@+id/listitem_title"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:text="故宫"/>
+               android:text=""/>
            <TextView
                android:ellipsize="end"
                android:lines="2"
@@ -49,7 +49,7 @@
                android:id="@+id/listitem_context"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:text="景点介绍 绝大多数第一次来背景的旅游..."/>
+               android:text=""/>
        </LinearLayout>
     </LinearLayout>
 

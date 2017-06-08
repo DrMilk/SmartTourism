@@ -1,10 +1,16 @@
 package com.nameli.smarttourism.lbstest;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -68,12 +74,20 @@ import com.baidu.mapapi.search.sug.OnGetSuggestionResultListener;
 import com.baidu.mapapi.search.sug.SuggestionResult;
 import com.baidu.mapapi.search.sug.SuggestionSearch;
 import com.nameli.smarttourism.R;
+import com.nameli.smarttourism.Utils.L;
+import com.nameli.smarttourism.Utils.T;
 import com.nameli.smarttourism.mapapi.overlayutil.PoiOverlay;
+import com.nameli.smarttourism.mine.ShopPushedActivity;
+import com.nameli.smarttourism.onlinedata.Pusheddata;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 
 
 public class LocationActivity extends Activity implements OnClickListener,OnMapClickListener,OnMarkerClickListener, OnGetPoiSearchResultListener, OnGetSuggestionResultListener {
-
-
+    private String TAG="LocationActivity";
+    private NotificationManager nm;
     private PoiSearch mPoiSearch = null;
     private SuggestionSearch mSuggestionSearch = null;
     private MapView mapView = null;
@@ -134,6 +148,7 @@ public class LocationActivity extends Activity implements OnClickListener,OnMapC
         initMapView();
        // changeDefaultBaiduMapView();
         initMapLocation();
+        nm= (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
     }
 
     /**
@@ -225,6 +240,7 @@ public class LocationActivity extends Activity implements OnClickListener,OnMapC
 
     class MyLocationListener implements BDLocationListener {
         public void onReceiveLocation(BDLocation location) {
+            L.i(TAG,"执行这步了吗000");
             //得到一个MyLocationData对象，需要将BDLocation对象转换成MyLocationData对象
             MyLocationData data=new MyLocationData.Builder()
                     .accuracy(location.getRadius())//精度半径
@@ -241,16 +257,57 @@ public class LocationActivity extends Activity implements OnClickListener,OnMapC
             longtitude=location.getLongitude();//得到当前的纬度 最新的变量
 
             //toast("经度："+latitude+"     纬度:"+longtitude);
-            if (isFirstIn) {//表示用户第一次打开，就定位到用户当前位置，即此时只要将地图的中心点设置为用户此时的位置即可
+            if (isFirstIn) {
+                //表示用户第一次打开，就定位到用户当前位置，即此时只要将地图的中心点设置为用户此时的位置即可
 //                LatLng latLng = new LatLng(location.getLatitude(),
 //                        location.getLongitude());
 //                MapStatusUpdate msu = MapStatusUpdateFactory.newLatLng(latLng);
 //                myBaiduMap.animateMapStatus(msu);
                 getMyLatestLocation(latitude,longtitude);//获得最新定位的位置,并且地图的中心点设置为我的位置
+                L.i(TAG,"执行这步了吗false");
                 isFirstIn=false;//表示第一次才会去定位到中心点
+                L.i(TAG,"执行这步了吗false1");
                 locationTextString=""+location.getAddrStr();//这里得到地址必须需要在设置LocationOption的时候需要设置isNeedAddress为true;
                 toast(locationTextString);
                 locationText.setText(locationTextString);
+                L.i(TAG,"执行这步了吗333");
+                BmobQuery<Pusheddata> query=new BmobQuery<>();
+                query.addWhereEqualTo("address",location.getDistrict());
+                query.setLimit(50);
+                query.findObjects(new FindListener<Pusheddata>() {
+                    @Override
+                    public void done(List<Pusheddata> list, BmobException e) {
+                        if(e==null){
+                            Intent intent=new Intent();
+                            intent.setClass(LocationActivity.this, ShopPushedActivity.class);
+                            Bundle bundle = new Bundle();
+                            ArrayList<Pusheddata> listpassdata=new ArrayList<Pusheddata>();
+                            for(int i=0;i<list.size();i++){
+                                listpassdata.add(list.get(i));
+                            }
+                            bundle.putParcelableArrayList("pushdata", listpassdata);
+                            ArrayList<String> listpassaddress=new ArrayList<String>();
+                            for(int i=0;i<list.size();i++){
+                                listpassaddress.add(list.get(i).getObjectId());
+                            }
+                            bundle.putStringArrayList("pushaddress",listpassaddress);
+                            intent.putExtras(bundle);
+                            L.i(TAG,"执行这步了吗111");
+                            PendingIntent pi=PendingIntent.getActivity(getApplicationContext(),1,intent,0);
+                            int i= (int) (Math.random()*list.size());
+                            Notification notifation=new Notification.Builder(getApplicationContext()).setContentTitle(list.get(i).getTitle())
+                                    .setContentText(list.get(i).getMessage())
+                                    .setContentIntent(pi)
+                                    .setDefaults(Notification.DEFAULT_SOUND)
+                                    .setSmallIcon(R.mipmap.upload_icon)
+                                    .setLargeIcon(BitmapFactory.decodeResource(getResources(),R.mipmap.ic_logonew)).build();
+                            nm.notify(10,notifation);
+                        }else {
+                            L.i(TAG,"执行这步了吗222");
+                            T.showShot(context,"推送信息失败！");
+                        }
+                    }
+                });
                 if(context==null){
                     Log.i("liyanan","context为空");
                 }

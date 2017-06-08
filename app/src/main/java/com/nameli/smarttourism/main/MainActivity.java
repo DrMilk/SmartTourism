@@ -180,6 +180,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 return false;
             }
         });
+        yuyin.setVisibility(View.GONE);
     }
     private void initFragment() {
         fragment_process=new FirstTabFragmentProcess();
@@ -238,7 +239,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 }
                 else {
                     ft.replace(R.id.activity_main_main,fragment_process);
-                   fragment_process.updataTitle("景点列表");
+                   fragment_process.updataTitle("景点");
                 }
 
                 ft.commit();break;
@@ -322,7 +323,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
                     ft.replace(R.id.activity_main_main,fragment_firstab);
                 else {
                     ft.replace(R.id.activity_main_main,fragment_process);
-                    fragment_process.updataTitle("景点列表");
+                    fragment_process.updataTitle("景点");
                 }
                 ft.commit();break;
             case 1:

@@ -129,15 +129,23 @@ public class PersonaldActivity extends Activity implements View.OnClickListener{
             newUser.setName(namenew);
             L.i(TAG,"newUser.setName成功了");
         }
-        if(!addressnew.equals(addressnew))
+        if(!addressnew.equals(address))
         newUser.setAddress(addressnew);
         if(!qq.equals(qqnew))
         newUser.setQq(qqnew);
         if(!wechat.equals(wechatnew))
         newUser.setWechat(wechatnew);
-        if(email!=null)
-        if(!email.equals(emailnew))
-        newUser.setEmail(emailnew);
+        if(email!=null){
+            if(!email.equals(emailnew)){
+                newUser.setEmail(emailnew);
+                L.i(TAG,"更改了吗  "+emailnew);
+            }
+        }else {
+            if(emailnew!=null){
+                newUser.setEmail(emailnew);
+                L.i(TAG,"更改了吗1  "+emailnew);
+            }
+        }
         L.i(TAG,newUser.getName()+newUser.getAddress()+newUser.getQq()+newUser.getWechat()+newUser.getEmail()+xuuser.getObjectId());
         newUser.update(xuuser.getObjectId(),new UpdateListener() {
             @Override

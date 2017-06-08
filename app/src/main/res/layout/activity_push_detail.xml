@@ -95,22 +95,6 @@
                     android:textColor="@color/context_text"
                     android:text=""/>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:paddingBottom="30dp">
-                <Button
-                    android:id="@+id/button_collect"
-                    android:layout_width="wrap_content"
-                    android:layout_height="34dp"
-                    android:background="@drawable/button_bg"
-                    android:textColor="@color/white_smoke"
-                    android:gravity="center"
-                    android:textSize="12sp"
-                    android:text="加入收藏"/>
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

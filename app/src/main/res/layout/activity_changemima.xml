@@ -36,7 +36,7 @@
                 android:theme="@style/style_about"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="徐蔼钰"/>
+                android:text="李亚男"/>
         </LinearLayout>
         <LinearLayout
             android:layout_marginTop="8dp"

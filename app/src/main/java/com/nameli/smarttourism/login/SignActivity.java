@@ -127,13 +127,13 @@ public class SignActivity extends Activity implements View.OnClickListener{
             edit_password_again.setError("两次密码输入不一样！");
             jundge_legal=false;
         }else if(!StringLegalUtil.isCorrectEmail(str_email)){
-            edit_email.setError("请输入正确的邮箱号号！");
+            edit_email.setError("请输入正确的邮箱号！");
             jundge_legal=false;
         }else if(!StringLegalUtil.isCorrectNumer(str_qq)){
-            edit_email.setError("请输入正确的QQ号！");
+            edit_qq.setError("请输入正确的QQ号！");
             jundge_legal=false;
         }else if(!StringLegalUtil.isSafePassword(str_password)){
-            edit_email.setError("输入密码过于简单！");
+            edit_password.setError("输入密码过于简单！");
             jundge_legal=false;
         }
         if(jundge_legal){
