@@ -9,6 +9,7 @@ import java.util.List;
  */
 //bean  添加覆盖物
 public class MarkInfo implements Serializable{
+    private String TAG="MarkInfo";
     private double latitude;
     private double longitude;
     private int ImageId;
