@@ -14,6 +14,7 @@ import java.io.Serializable;
  */
 
 public class MyOrientationListener implements SensorEventListener{
+    private static final String TAG = "MyOrientationListener";
     private SensorManager mySensorManager;
     private Sensor mySensor;
     private Context myContext;
