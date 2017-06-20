@@ -9,7 +9,6 @@ import cn.bmob.v3.BmobObject;
  */
 
 public class Alldata extends BmobObject{
-    private String TAG="Alldata";
     private ArrayList<String> list_spot;
     private ArrayList<String> list_travel;
     private ArrayList<String> list_food;

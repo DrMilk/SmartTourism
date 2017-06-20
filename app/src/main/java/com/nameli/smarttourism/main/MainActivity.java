@@ -556,11 +556,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
         }
     };
     private void mbmobinitdata() {
-        Bmob.initialize(this, "5d01eaa5fc932e51cba2f9ed91c32855");
+        Bmob.initialize(this, "932a06709f59e1b767b670eb9d1ca6e3");
         //第二：自v3.4.7版本开始,设置BmobConfig,允许设置请求超时时间、文件分片上传时每片的大小、文件的过期时间(单位为秒)，
         BmobConfig config =new BmobConfig.Builder(this)
                 //设置appkey
-                .setApplicationId("5d01eaa5fc932e51cba2f9ed91c32855")
+                .setApplicationId("932a06709f59e1b767b670eb9d1ca6e3")
                 //请求超时时间（单位为秒）：默认15s
                 .setConnectTimeout(30)
                 //文件分片上传时每片的大小（单位字节），默认512*1024

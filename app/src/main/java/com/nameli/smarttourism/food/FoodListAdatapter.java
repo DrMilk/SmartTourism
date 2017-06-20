@@ -20,6 +20,7 @@ import java.util.List;
  */
 
 public class FoodListAdatapter extends BaseAdapter {
+    private String TAG="FoodListAdatapter";
     private List<Fooddata> list_data;
     private MyViewHolder wuViewHolder;
     private LayoutInflater mlayoutinflater;
