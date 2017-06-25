@@ -185,7 +185,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
     private void initFragment() {
         fragment_process=new FirstTabFragmentProcess();
         BmobQuery<Alldata> query = new BmobQuery<Alldata>();
-        query.getObject("9eeb241fdc", new QueryListener<Alldata>() {
+        query.getObject("tKmRQQQi", new QueryListener<Alldata>() {
 
             @Override
             public void done(Alldata object, BmobException e) {

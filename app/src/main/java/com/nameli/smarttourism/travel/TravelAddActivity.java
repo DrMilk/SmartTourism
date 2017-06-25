@@ -22,6 +22,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 
 import com.nameli.smarttourism.R;
@@ -58,6 +59,7 @@ public class TravelAddActivity extends Activity implements View.OnClickListener{
     private Context mcontext;
     private MyUpload myUpload;
     private Alldata alldata;
+    private TextView text_back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,8 +88,10 @@ public class TravelAddActivity extends Activity implements View.OnClickListener{
         edit_context= (EditText) findViewById(R.id.travel_add_context);
         button_ok= (Button) findViewById(R.id.travel_add_ok);
         img_add= (ImageView) findViewById(R.id.travel_add_img);
+        text_back= (TextView) findViewById(R.id.travel_add_back);
         button_ok.setOnClickListener(this);
         img_add.setOnClickListener(this);
+        text_back.setOnClickListener(this);
     }
 
     @Override
@@ -95,6 +99,7 @@ public class TravelAddActivity extends Activity implements View.OnClickListener{
         switch (v.getId()){
             case R.id.travel_add_ok:gook();break;
             case R.id.travel_add_img:openpicture();break;
+            case R.id.travel_add_back:TravelAddActivity.this.finish();break;
         }
     }
 
@@ -134,12 +139,12 @@ public class TravelAddActivity extends Activity implements View.OnClickListener{
     private void myPicUpload(String s) {
         int howpic_i=1;
         switch (howpic_i){
-            case 1:myUpload.goUpload("mysmarttourism","listimg/"+s,mysdcard.pathwriteimg+ File.separator+"img1.jpg");break;
-            case 2:myUpload.goUpload(" mysmarttourism","listimg/"+s,mysdcard.pathwriteimg+ File.separator+"img1.jpg");
-                myUpload.goUpload(" mysmarttourism","listimg/"+s,mysdcard.pathwriteimg+ File.separator+"img2.jpg");break;
-            case 3:myUpload.goUpload(" mysmarttourism","listimg/"+s,mysdcard.pathwriteimg+ File.separator+"img1.jpg");
-                myUpload.goUpload(" mysmarttourism","listimg/"+s,mysdcard.pathwriteimg+ File.separator+"img2.jpg");
-                myUpload.goUpload(" mysmarttourism","listimg/"+s,mysdcard.pathwriteimg+ File.separator+"img3.jpg");;break;
+            case 1:myUpload.goUpload("lismarttourism","listimg/"+s,mysdcard.pathwriteimg+ File.separator+"img1.jpg");break;
+            case 2:myUpload.goUpload(" lismarttourism","listimg/"+s,mysdcard.pathwriteimg+ File.separator+"img1.jpg");
+                myUpload.goUpload(" lismarttourism","listimg/"+s,mysdcard.pathwriteimg+ File.separator+"img2.jpg");break;
+            case 3:myUpload.goUpload(" lismarttourism","listimg/"+s,mysdcard.pathwriteimg+ File.separator+"img1.jpg");
+                myUpload.goUpload(" lismarttourism","listimg/"+s,mysdcard.pathwriteimg+ File.separator+"img2.jpg");
+                myUpload.goUpload(" lismarttourism","listimg/"+s,mysdcard.pathwriteimg+ File.separator+"img3.jpg");;break;
             case 0:;break;
         }
     }

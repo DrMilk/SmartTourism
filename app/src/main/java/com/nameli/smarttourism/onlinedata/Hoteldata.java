@@ -90,6 +90,9 @@ public class Hoteldata extends BmobObject implements Parcelable{
     }
 
     public ArrayList<String> getList_remark() {
+        if(list_remark==null){
+            return new ArrayList<String>();
+        }
         return list_remark;
     }
 

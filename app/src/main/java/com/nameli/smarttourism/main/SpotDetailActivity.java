@@ -72,7 +72,7 @@ public class SpotDetailActivity extends Activity implements View.OnClickListener
         img_share= (TextView) findViewById(R.id.detail_spot_share);
         back_line.setOnClickListener(this);
         img_share.setOnClickListener(this);
-        myUpload.download_asynchronous("mysmarttourism","listimg/"+id,img);
+        myUpload.download_asynchronous("lismarttourism","listimg/"+id,img);
         button_collect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

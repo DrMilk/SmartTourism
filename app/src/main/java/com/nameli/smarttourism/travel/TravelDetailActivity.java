@@ -124,7 +124,7 @@ public class TravelDetailActivity extends Activity implements View.OnClickListen
         back_line.setOnClickListener(this);
         img_share.setOnClickListener(this);
         img= (ImageView) headview.findViewById(R.id.detail_head_img);
-        myUpload.download_asynchronous("mysmarttourism","listimg/"+id,img);
+        myUpload.download_asynchronous("lismarttourism","listimg/"+id,img);
         title= (TextView) headview.findViewById(R.id.detail_head_title);
         context= (TextView) headview.findViewById(R.id.detail_head_context);
         button_remark= (Button) footview.findViewById(R.id.foot_button);

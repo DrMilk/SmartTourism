@@ -208,7 +208,6 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         Intent it=new Intent(LoginActivity.this,MainActivity.class);
         startActivity(it);
     }
-
     @Override
     protected void onResume() {
         if(SharePreferenceUtil.getSettingDataBoolean(mcontext,SharePreferenceUtil.AUTOLOGIN)){

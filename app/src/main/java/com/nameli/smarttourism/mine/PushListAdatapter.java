@@ -59,7 +59,7 @@ public class PushListAdatapter extends BaseAdapter {
         }
         wuViewHolder.text_title.setText(list_data.get(position).getTitle());
         wuViewHolder.text_context.setText(list_data.get(position).getContext());
-        myUpload.download_asynchronous("mysmarttourism","listimg/"+list_data.get(position).getObjectId(),wuViewHolder.img);
+        myUpload.download_asynchronous("lismarttourism","listimg/"+list_data.get(position).getObjectId(),wuViewHolder.img);
         return convertView;
     }
     private class MyViewHolder{

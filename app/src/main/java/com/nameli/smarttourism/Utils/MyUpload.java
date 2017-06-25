@@ -60,7 +60,7 @@ public class MyUpload {
           public MyUpload(Context context){
               String endpoint = "oss-cn-qingdao.aliyuncs.com";
 // 明文设置secret的方式建议只在测试时使用，更多鉴权模式请参考后面的`访问控制`章节
-              OSSCredentialProvider credentialProvider = new OSSPlainTextAKSKCredentialProvider("LTAIt54qe4IyeKHz","nSwBEy9hYwuUDWeNxMrcHsgVz4mBPZ");
+              OSSCredentialProvider credentialProvider = new OSSPlainTextAKSKCredentialProvider("LTAIDIeGGWh9bJDh","izKuJxzH6ETOmhs4HCUxrYhlLSCvP6 ");
               ClientConfiguration conf = new ClientConfiguration();
               conf.setConnectionTimeout(15 * 1000); // 连接超时，默认15秒
               conf.setSocketTimeout(15 * 1000); // socket超时，默认15秒

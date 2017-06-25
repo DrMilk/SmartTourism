@@ -65,7 +65,7 @@ public class SpotListAdatapter extends BaseAdapter {
         wuViewHolder.text_context.setText(list_data.get(position).getContext());
         L.i(TAG,"到了吗1");
         System.out.print("我操你妈那");
-        myUpload.download_asynchronous("mysmarttourism","listimg/"+list_data.get(position).getObjectId(),wuViewHolder.img);
+        myUpload.download_asynchronous("lismarttourism","listimg/"+list_data.get(position).getObjectId(),wuViewHolder.img);
         return convertView;
     }
     private class MyViewHolder{

@@ -269,7 +269,12 @@ public class LocationActivity extends Activity implements OnClickListener,OnMapC
                 L.i(TAG,"执行这步了吗false1");
                 locationTextString=""+location.getAddrStr();//这里得到地址必须需要在设置LocationOption的时候需要设置isNeedAddress为true;
                 toast(locationTextString);
-                locationText.setText(locationTextString);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        locationText.setText(locationTextString);
+                    }
+                });
                 L.i(TAG,"执行这步了吗333");
                 BmobQuery<Pusheddata> query=new BmobQuery<>();
                 query.addWhereEqualTo("address",location.getDistrict());

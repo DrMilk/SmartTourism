@@ -90,6 +90,9 @@ public class Fooddata extends BmobObject implements Parcelable{
     }
 
     public ArrayList<String> getList_remarkd() {
+        if(list_remarkd==null){
+            return new ArrayList<String>();
+        }
         return list_remarkd;
     }
 

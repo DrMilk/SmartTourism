@@ -118,7 +118,7 @@ public class HotelDetailActivity extends Activity implements View.OnClickListene
         button_remark= (Button) footview.findViewById(R.id.foot_button);
         edit_remark= (EditText) footview.findViewById(R.id.foot_edittext);
         img= (ImageView) headview.findViewById(R.id.detail_head_img);
-        myUpload.download_asynchronous("mysmarttourism","listimg/"+id,img);
+        myUpload.download_asynchronous("lismarttourism","listimg/"+id,img);
         button_remark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

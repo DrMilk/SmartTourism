@@ -15,6 +15,6 @@ public class T {
         Toast.makeText(context,s, Toast.LENGTH_SHORT).show();
     }
     public static void showLong(Context context, CharSequence s){
-        Toast.makeText(context,s, Toast.LENGTH_LONG);
+        Toast.makeText(context,s, Toast.LENGTH_LONG).show();
     }
 }
