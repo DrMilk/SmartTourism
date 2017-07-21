@@ -71,4 +71,12 @@ public class FoodListAdatapter extends BaseAdapter {
         private ImageView img;
         private TextView text_price;
     }
+
+    public List<Fooddata> getList_data() {
+        return list_data;
+    }
+
+    public void setList_data(List<Fooddata> list_data) {
+        this.list_data = list_data;
+    }
 }

@@ -15,12 +15,14 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Spinner;
 
 
 import com.nameli.smarttourism.R;
 import com.nameli.smarttourism.Utils.L;
 import com.nameli.smarttourism.Utils.T;
 import com.nameli.smarttourism.onlinedata.Fooddata;
+import com.nameli.smarttourism.onlinedata.Hoteldata;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -40,6 +42,8 @@ import cn.bmob.v3.listener.QueryListener;
  */
 
 public class FoodFragment extends Fragment {
+    private Spinner spinner ;
+    private ArrayList<Fooddata> list_food_kind=new ArrayList<>();
     private String TAG="FoodFragment";
     private ListView listView;
     private ArrayList<Fooddata> list_food;
@@ -154,6 +158,30 @@ public class FoodFragment extends Fragment {
                 it.putExtras(bundle);
                 getActivity().startActivity(it);
                 L.i(TAG,"点击了吗");
+            }
+        });
+        spinner = (Spinner) view.findViewById(R.id.spin_food);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position==0){
+                    foodListAdatapter.setList_data(list_food);
+                    foodListAdatapter.notifyDataSetChanged();
+                }else {
+                    list_food_kind = new ArrayList<Fooddata>();
+                    for(int i=0;i<list_food.size();i++){
+                        if(list_food.get(i).getSpecise()==position){
+                            list_food_kind.add(list_food.get(i));
+                        }
+                    }
+                    foodListAdatapter.setList_data(list_food_kind);
+                    foodListAdatapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
         searchView=(SearchView)view.findViewById(R.id.search_view);

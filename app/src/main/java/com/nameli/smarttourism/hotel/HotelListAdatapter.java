@@ -70,4 +70,12 @@ public class HotelListAdatapter extends BaseAdapter {
         private ImageView img;
         private TextView text_price;
     }
+
+    public List<Hoteldata> getList_data() {
+        return list_data;
+    }
+
+    public void setList_data(List<Hoteldata> list_data) {
+        this.list_data = list_data;
+    }
 }

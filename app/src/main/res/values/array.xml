@@ -2,9 +2,17 @@
 <resources>
         <string-array name="food_array">
             <item>全部美食</item>
+            <item>酸</item>
+            <item>甜</item>
+            <item>苦</item>
+            <item>辣</item>
         </string-array>
     <string-array name="hotel_array">
         <item>全部酒店</item>
+        <item>两星酒店</item>
+        <item>三星酒店</item>
+        <item>四星酒店</item>
+        <item>五星酒店</item>
     </string-array>
     <string-array name="sex">
         <item>男</item>

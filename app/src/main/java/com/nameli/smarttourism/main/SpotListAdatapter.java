@@ -49,7 +49,6 @@ public class SpotListAdatapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        System.out.println("到泥马勒戈壁");
         if(convertView==null){
             L.i(TAG,"到了吗1");
             wuViewHolder=new MyViewHolder();
@@ -64,7 +63,6 @@ public class SpotListAdatapter extends BaseAdapter {
         wuViewHolder.text_title.setText(list_data.get(position).getTitle());
         wuViewHolder.text_context.setText(list_data.get(position).getContext());
         L.i(TAG,"到了吗1");
-        System.out.print("我操你妈那");
         myUpload.download_asynchronous("lismarttourism","listimg/"+list_data.get(position).getObjectId(),wuViewHolder.img);
         return convertView;
     }

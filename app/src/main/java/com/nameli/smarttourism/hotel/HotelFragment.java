@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Spinner;
 
 
 import com.nameli.smarttourism.R;
@@ -42,6 +43,8 @@ import cn.bmob.v3.listener.QueryListener;
  */
 
 public class HotelFragment extends Fragment {
+    private Spinner spinner ;
+    private ArrayList<Hoteldata> list_hotel_kind=new ArrayList<>();
     private String TAG="HotelFragment";
     private ListView listView;
     private ArrayList<Hoteldata> list_hotel;
@@ -155,6 +158,30 @@ public class HotelFragment extends Fragment {
                 bundle.putStringArrayList("remarklist",list_hotel.get(position).getList_remark());
                 it.putExtras(bundle);
                 startActivity(it);
+            }
+        });
+        spinner = (Spinner) view.findViewById(R.id.spin_food);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position==0){
+                    hotelListAdatapter.setList_data(list_hotel);
+                    hotelListAdatapter.notifyDataSetChanged();
+                }else {
+                    list_hotel_kind = new ArrayList<Hoteldata>();
+                    for(int i=0;i<list_hotel.size();i++){
+                        if(list_hotel.get(i).getSpecise()==position){
+                            list_hotel_kind.add(list_hotel.get(i));
+                        }
+                    }
+                    hotelListAdatapter.setList_data(list_hotel_kind);
+                    hotelListAdatapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
         searchView=(SearchView)view.findViewById(R.id.search_view);
